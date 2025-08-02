@@ -49,6 +49,15 @@ export function defaultComponentIR(): ComponentIR {
           { type: ModifierType.cornerRadius, value: 12 },
         ],
       },
+      {
+        id: uuid(),
+        type: ComponentType.Image,
+        properties: { src: 'https://placehold.co/200', alt: 'Placeholder' },
+        modifiers: [
+          // { type: ModifierType.backgroundColor, value: '#007AFF' },
+          { type: ModifierType.cornerRadius, value: 12 },
+        ],
+      },
     ],
   }
 }

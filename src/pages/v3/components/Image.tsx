@@ -1,5 +1,14 @@
 import { type ComponentDefinition, ComponentType, ModifierType, Platform } from "../const/common"
 
+const aspectRatioMap = {
+  original: 'auto',
+  '1:1': '1 / 1',
+  '4:3': '4 / 3',
+  '16:9': '16 / 9',
+  '3:4': '3 / 4',
+  '9:16': '9 / 16',
+} as const
+
 const Image: ComponentDefinition =  {
   type: ComponentType.Image,
   name: 'Image',
@@ -53,14 +62,7 @@ const Image: ComponentDefinition =  {
       (acc, mod) => ({ ...acc, [mod.type]: mod.value }),
       {} as Record<ModifierType, string>,
     )
-    const aspectRatioMap = {
-      original: 'auto',
-      '1:1': '1 / 1',
-      '4:3': '4 / 3',
-      '16:9': '16 / 9',
-      '3:4': '3 / 4',
-      '9:16': '9 / 16',
-    }
+    
     return (
       <img
         src={component.properties.src}
