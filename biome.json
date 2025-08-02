@@ -51,7 +51,8 @@
         "noNonNullAssertion": "off"
       },
       "performance": {
-        "noDelete": "off"
+        "noDelete": "off",
+        "noAccumulatingSpread":"off"
       }
     }
   },

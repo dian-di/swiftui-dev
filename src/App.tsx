@@ -2,13 +2,14 @@ import './App.css'
 import { Route, Routes } from 'react-router-dom'
 import Home from '@/pages/home'
 import Mine from '@/pages/mine'
+import V3 from '@/pages/v3'
 
 function App() {
   return (
     <div className='relative min-h-screen'>
       <Routes>
-      <Route path='/' element={<Home />} />
-      <Route path='/home' element={<Home />} />
+        <Route path='/' element={<V3 />} />
+        <Route path='/home' element={<Home />} />
         <Route path='/mine' element={<Mine />} />
       </Routes>
     </div>
