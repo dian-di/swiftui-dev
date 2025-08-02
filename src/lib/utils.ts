@@ -12,6 +12,7 @@ export function uuid() {
 export type Color = {
   r: number,g: number,b: number
 }
+
 export function hexToRGB(hex: string): Color {
   const r = parseInt(hex.slice(1, 3), 16);
   const g = parseInt(hex.slice(3, 5), 16);

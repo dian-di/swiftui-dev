@@ -3,7 +3,7 @@ import { type ComponentDefinition, ComponentType, ModifierType, Platform } from 
 const Image: ComponentDefinition =  {
   type: ComponentType.Image,
   name: 'Image',
-  defaultProps: { src: 'https://via.placeholder.com/150', alt: 'Placeholder' },
+  defaultProps: { src: 'https://placehold.co/200', alt: 'Placeholder' },
   supportedPlatforms: [
     Platform.SwiftUI,
     Platform.JetpackCompose,

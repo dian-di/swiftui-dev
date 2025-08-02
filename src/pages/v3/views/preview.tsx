@@ -1,8 +1,9 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import type { ComponentIR } from '../const/common'
+import { useComponentIRStore } from '@/store/ComponentIR'
 import { IRRenderer } from '../utils/IRRender'
 
-export default function PreviewView({ componentIR }: { componentIR: ComponentIR }) {
+export default function PreviewView() {
+  const { componentIR } = useComponentIRStore()
   return (
     <Card>
       <CardHeader>

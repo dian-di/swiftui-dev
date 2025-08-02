@@ -8,36 +8,34 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { Slider } from '@/components/ui/slider'
-import type { ComponentIR, ModifierDefinition } from '../const/common'
+import { useSelectedComponentIR, useSelectedComponentIRStore } from '@/store/ComponentIR'
+import type { ModifierDefinition } from '../const/common'
 import componentRegistry from '../const/registry'
 
-export default function PropertyView({
-  selectedComponent,
-  updateComponent,
-}: {
-  selectedComponent: ComponentIR
-  updateComponent: (id: string, updates: Partial<ComponentIR>) => void
-}) {
+export default function PropertyView() {
+  const { update } = useSelectedComponentIRStore()
+  const selectedComponentIR = useSelectedComponentIR()
+
   return (
     <Card>
       <CardHeader>
         <CardTitle>Properties</CardTitle>
       </CardHeader>
       <CardContent>
-        {selectedComponent ? (
+        {selectedComponentIR ? (
           <div className='space-y-4'>
-            <h3 className='font-medium'>{selectedComponent.type}</h3>
+            <h3 className='font-medium'>{selectedComponentIR.type}</h3>
 
             {/* 编辑基础属性 */}
-            {Object.entries(selectedComponent.properties).map(([key, value]) => (
+            {Object.entries(selectedComponentIR.properties).map(([key, value]) => (
               <div key={key}>
                 {/** biome-ignore lint/a11y/noLabelWithoutControl: <> */}
                 <label className='font-medium text-sm'>{key}</label>
                 <Input
                   value={value}
                   onChange={(e) =>
-                    updateComponent(selectedComponent.id, {
-                      properties: { ...selectedComponent.properties, [key]: e.target.value },
+                    update({
+                      properties: { ...selectedComponentIR.properties, [key]: e.target.value },
                     })
                   }
                 />
@@ -45,9 +43,9 @@ export default function PropertyView({
             ))}
 
             {/* 编辑修饰符 */}
-            {componentRegistry[selectedComponent.type]?.availableModifiers.map(
+            {componentRegistry[selectedComponentIR.type]?.availableModifiers.map(
               (modifierDef: ModifierDefinition) => {
-                const currentModifier = selectedComponent.modifiers.find(
+                const currentModifier = selectedComponentIR.modifiers.find(
                   (m) => m.type === modifierDef.type,
                 )
                 const currentValue = currentModifier?.value ?? modifierDef.defaultValue
@@ -61,11 +59,11 @@ export default function PropertyView({
                         type='color'
                         value={currentValue}
                         onChange={(e) => {
-                          const newModifiers = selectedComponent.modifiers.filter(
+                          const newModifiers = selectedComponentIR.modifiers.filter(
                             (m) => m.type !== modifierDef.type,
                           )
                           newModifiers.push({ type: modifierDef.type, value: e.target.value })
-                          updateComponent(selectedComponent.id, { modifiers: newModifiers })
+                          update({ modifiers: newModifiers })
                         }}
                       />
                     ) : modifierDef.valueType === 'number' ? (
@@ -73,11 +71,11 @@ export default function PropertyView({
                         <Slider
                           value={[currentValue]}
                           onValueChange={([value]) => {
-                            const newModifiers = selectedComponent.modifiers.filter(
+                            const newModifiers = selectedComponentIR.modifiers.filter(
                               (m) => m.type !== modifierDef.type,
                             )
                             newModifiers.push({ type: modifierDef.type, value })
-                            updateComponent(selectedComponent.id, { modifiers: newModifiers })
+                            update({ modifiers: newModifiers })
                           }}
                           min={modifierDef.min || 0}
                           max={modifierDef.max || 100}
@@ -89,11 +87,11 @@ export default function PropertyView({
                       <Select
                         value={currentValue}
                         onValueChange={(value) => {
-                          const newModifiers = selectedComponent.modifiers.filter(
+                          const newModifiers = selectedComponentIR.modifiers.filter(
                             (m) => m.type !== modifierDef.type,
                           )
                           newModifiers.push({ type: modifierDef.type, value })
-                          updateComponent(selectedComponent.id, { modifiers: newModifiers })
+                          update({ modifiers: newModifiers })
                         }}
                       >
                         <SelectTrigger>
@@ -111,11 +109,11 @@ export default function PropertyView({
                       <Input
                         value={currentValue}
                         onChange={(e) => {
-                          const newModifiers = selectedComponent.modifiers.filter(
+                          const newModifiers = selectedComponentIR.modifiers.filter(
                             (m) => m.type !== modifierDef.type,
                           )
                           newModifiers.push({ type: modifierDef.type, value: e.target.value })
-                          updateComponent(selectedComponent.id, { modifiers: newModifiers })
+                          update({ modifiers: newModifiers })
                         }}
                       />
                     )}

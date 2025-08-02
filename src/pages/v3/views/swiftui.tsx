@@ -1,5 +1,5 @@
 import { Plus, Trash2 } from 'lucide-react'
-import { useCallback, useMemo, useState } from 'react'
+import { useMemo } from 'react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import {
@@ -9,7 +9,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import { useComponentIRStore } from '@/store/ComponentIR'
+import { useComponentIRStore, useSelectedComponentIRStore } from '@/store/ComponentIR'
 import type {
   ComponentDefinition,
   ComponentIR,
@@ -22,9 +22,8 @@ import PreviewView from './preview'
 import PropertyView from './property'
 
 export default function SwiftUITeachingPlatform() {
-  const { componentIR, selectedId, findComponentIR, addComponentIR, selectComponentIR, updateComponentIR, removeComponentIR } = useComponentIRStore()
-
-  const selectedComponent = useMemo(() => selectedId ? findComponentIR(selectedId) : null, [selectedId])
+  const { componentIR, add, remove } = useComponentIRStore()
+  const { selectedId, select } = useSelectedComponentIRStore()
 
   // 生成SwiftUI代码
   const generatedCode = useMemo(() => {
@@ -40,7 +39,7 @@ export default function SwiftUITeachingPlatform() {
         className={`flex cursor-pointer items-center gap-2 rounded p-2 ${
           selectedId === component.id ? 'bg-blue-100' : 'hover:bg-gray-100'
         }`}
-        onClick={() => selectComponentIR(component.id)}
+        onClick={() => select(component.id)}
       >
         <span className='font-medium text-sm'>{component.type}</span>
         {component.id !== 'root' && (
@@ -50,7 +49,7 @@ export default function SwiftUITeachingPlatform() {
             className='h-6 w-6 p-0'
             onClick={(e) => {
               e.stopPropagation()
-              removeComponentIR(component.id)
+              remove(component.id)
             }}
           >
             <Trash2 className='h-3 w-3' />
@@ -72,7 +71,7 @@ export default function SwiftUITeachingPlatform() {
             <CardHeader>
               <CardTitle className='flex items-center justify-between'>
                 Component Tree
-                <Select onValueChange={(type: ComponentType) => addComponentIR('root', type)}>
+                <Select onValueChange={(type: ComponentType) => add('root', type)}>
                   <SelectTrigger className='w-32'>
                     <Plus className='mr-2 h-4 w-4' />
                     <SelectValue placeholder='Add' />
@@ -93,12 +92,9 @@ export default function SwiftUITeachingPlatform() {
           </Card>
 
           {/* 预览区域 */}
-          <PreviewView componentIR={componentIR} />
+          <PreviewView />
 
-          <PropertyView
-            selectedComponent={selectedComponent as ComponentIR}
-            updateComponent={updateComponentIR}
-          />
+          <PropertyView />
         </div>
 
         <GeneratedView generatedCode={generatedCode} />

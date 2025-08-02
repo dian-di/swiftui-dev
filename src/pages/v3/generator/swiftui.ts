@@ -1,4 +1,4 @@
-import type { Color } from '@/lib/utils'
+import { type Color, hexToRGB } from '@/lib/utils'
 import type { ComponentIR } from '../const/common'
 import componentRegistry from '../const/registry'
 
@@ -67,7 +67,8 @@ class SwiftUICodeGenerator {
   }
 }
 
-function colorGene(color: Color) {
+function colorGene(hex: string) {
+  const color: Color = hexToRGB(hex)
   return `Color(red: ${color.r}, green: ${color.g}, blue: ${color.b})`
 }
 
