@@ -48,7 +48,7 @@ export default function TreeView() {
       <CardHeader>
         <CardTitle className='flex items-center justify-between'>
           Component Tree
-          <Select onValueChange={(type: ComponentType) => add('root', type)}>
+          <Select onValueChange={(type: ComponentType) => add(selectedId || 'root', type)}>
             <SelectTrigger className='w-32'>
               <Plus className='mr-2 h-4 w-4' />
               <SelectValue placeholder='Add' />

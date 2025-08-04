@@ -1,4 +1,19 @@
-import { type ComponentDefinition, ComponentType, ModifierType, Platform } from "../const/common"
+import { Button as UIButton } from '@/components/ui/button'
+import { type ComponentDefinition, ComponentType, ModifierType, Platform } from '../const/common'
+
+
+
+export enum ButtonModifierType {
+  buttonStyle = 'buttonStyle',
+  buttonBorderShape = 'buttonBorderShape',
+}
+
+export enum ControlSizeModifierType {
+  mini = 'mini',
+  small = 'small',
+  regular = 'regular',
+  large = 'large',
+}
 
 const Button: ComponentDefinition = {
   type: ComponentType.Button,
@@ -12,6 +27,20 @@ const Button: ComponentDefinition = {
     Platform.Web,
   ],
   availableModifiers: [
+    {
+      type: ButtonModifierType.buttonStyle,
+      name: 'Font Weight',
+      valueType: 'select',
+      defaultValue: 'normal',
+      options: ['normal', 'bold', '100', '200', '300', '400', '500', '600', '700', '800', '900'],
+    },
+    {
+      type: ButtonModifierType.buttonBorderShape,
+      name: 'Font Weight',
+      valueType: 'select',
+      defaultValue: 'normal',
+      options: ['normal', 'bold', '100', '200', '300', '400', '500', '600', '700', '800', '900'],
+    },
     {
       type: ModifierType.backgroundColor,
       name: 'Background Color',
@@ -75,7 +104,7 @@ const Button: ComponentDefinition = {
       {} as Record<ModifierType, string>,
     )
     return (
-      <button
+      <UIButton
         type='button'
         className='transition-all duration-200 hover:opacity-80'
         disabled={modifiers[ModifierType.disabled] === 'true'}
@@ -92,7 +121,7 @@ const Button: ComponentDefinition = {
         }}
       >
         {component.properties.text}
-      </button>
+      </UIButton>
     )
   },
 }

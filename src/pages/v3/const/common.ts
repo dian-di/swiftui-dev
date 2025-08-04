@@ -81,25 +81,32 @@ export enum ComponentType {
   StatusBar = 'StatusBar',
 }
 
-export enum ModifierType {
-  // 颜色相关
+
+// 颜色相关
+enum ColorModifier {
   backgroundColor = 'backgroundColor',
   foregroundColor = 'foregroundColor',
   accentColor = 'accentColor',
   tintColor = 'tintColor',
+}
 
-  // 尺寸相关
+// 尺寸相关
+enum SizeModifier {
   frame = 'frame',
   width = 'width',
   height = 'height',
   aspectRatio = 'aspectRatio',
   scaleEffect = 'scaleEffect',
+}
 
-  // 间距相关
+// 间距相关
+enum SpaceModifier {
   padding = 'padding',
   margin = 'margin',
   spacing = 'spacing',
+}
 
+enum FontModifier {
   // 字体相关
   font = 'font',
   fontSize = 'fontSize',
@@ -110,7 +117,9 @@ export enum ModifierType {
   lineHeight = 'lineHeight',
   lineLimit = 'lineLimit',
   textDecoration = 'textDecoration',
+}
 
+enum ShapeModifier {
   // 形状相关
   cornerRadius = 'cornerRadius',
   clipShape = 'clipShape',
@@ -118,14 +127,20 @@ export enum ModifierType {
   borderWidth = 'borderWidth',
   borderColor = 'borderColor',
   shadow = 'shadow',
+}
 
+enum LayoutModifier {
   // 布局相关
   alignment = 'alignment',
   layoutPriority = 'layoutPriority',
   zIndex = 'zIndex',
   offset = 'offset',
   rotation = 'rotation',
+}
 
+export type ModifierType = ColorModifier | SizeModifier | SpaceModifier | FontModifier | ShapeModifier | LayoutModifier
+
+export enum ModifierType1 {
   // 交互相关
   disabled = 'disabled',
   opacity = 'opacity',

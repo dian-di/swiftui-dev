@@ -9,7 +9,7 @@ export default function SwiftUITeachingPlatform() {
       <div className='mx-auto max-w-7xl'>
         <h1 className='mb-8 font-bold text-3xl text-gray-900'>SwiftUI Teaching Platform</h1>
         <div className='grid grid-cols-1 gap-6 lg:grid-cols-3'>
-          <TreeView />
+          <TreeView /> 
           <PreviewView />
           <PropertyView />
         </div>
