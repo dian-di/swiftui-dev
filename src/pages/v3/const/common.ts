@@ -1,8 +1,8 @@
 export enum Platform {
   SwiftUI = 'SwiftUI',
-  JetpackCompose = 'JetpackCompose',
-  Flutter = 'Flutter',
-  ReactNative = 'ReactNative',
+  // JetpackCompose = 'JetpackCompose',
+  // Flutter = 'Flutter',
+  // ReactNative = 'ReactNative',
   Web = 'Web',
 }
 
@@ -81,9 +81,24 @@ export enum ComponentType {
   StatusBar = 'StatusBar',
 }
 
+export enum ButtonModifier {
+  buttonStyle = 'buttonStyle',
+  buttonBorderShape = 'buttonBorderShape',
+}
+
+export enum TextFieldModifier {
+  textFieldStyle = 'textFieldStyle',
+}
+
+export enum ControlSizeModifier {
+  mini = 'mini',
+  small = 'small',
+  regular = 'regular',
+  large = 'large',
+}
 
 // 颜色相关
-enum ColorModifier {
+export enum ColorModifier {
   backgroundColor = 'backgroundColor',
   foregroundColor = 'foregroundColor',
   accentColor = 'accentColor',
@@ -91,7 +106,7 @@ enum ColorModifier {
 }
 
 // 尺寸相关
-enum SizeModifier {
+export enum SizeModifier {
   frame = 'frame',
   width = 'width',
   height = 'height',
@@ -100,13 +115,13 @@ enum SizeModifier {
 }
 
 // 间距相关
-enum SpaceModifier {
+export enum SpaceModifier {
   padding = 'padding',
   margin = 'margin',
   spacing = 'spacing',
 }
 
-enum FontModifier {
+export enum FontModifier {
   // 字体相关
   font = 'font',
   fontSize = 'fontSize',
@@ -119,7 +134,7 @@ enum FontModifier {
   textDecoration = 'textDecoration',
 }
 
-enum ShapeModifier {
+export enum ShapeModifier {
   // 形状相关
   cornerRadius = 'cornerRadius',
   clipShape = 'clipShape',
@@ -129,7 +144,7 @@ enum ShapeModifier {
   shadow = 'shadow',
 }
 
-enum LayoutModifier {
+export enum LayoutModifier {
   // 布局相关
   alignment = 'alignment',
   layoutPriority = 'layoutPriority',
@@ -138,10 +153,7 @@ enum LayoutModifier {
   rotation = 'rotation',
 }
 
-export type ModifierType = ColorModifier | SizeModifier | SpaceModifier | FontModifier | ShapeModifier | LayoutModifier
-
-export enum ModifierType1 {
-  // 交互相关
+export enum InteractModifier {
   disabled = 'disabled',
   opacity = 'opacity',
   animation = 'animation',
@@ -149,6 +161,11 @@ export enum ModifierType1 {
   gesture = 'gesture',
   onTap = 'onTap',
   onLongPress = 'onLongPress',
+}
+
+export type ModifierType = ColorModifier |SizeModifier |SpaceModifier |FontModifier |ShapeModifier |LayoutModifier |ButtonModifier |ControlSizeModifier | InteractModifier
+
+export enum ModifierType1 {
 
   // SwiftUI 特有
   navigationTitle = 'navigationTitle',
@@ -203,44 +220,44 @@ export const PlatformComponentMapping: Record<Platform, Partial<Record<Component
     [ComponentType.NavigationView]: 'NavigationView',
     [ComponentType.TabView]: 'TabView',
   },
-  [Platform.JetpackCompose]: {
-    [ComponentType.Button]: 'Button',
-    [ComponentType.Text]: 'Text',
-    [ComponentType.VStack]: 'Column',
-    [ComponentType.HStack]: 'Row',
-    [ComponentType.ZStack]: 'Box',
-    [ComponentType.TextField]: 'TextField',
-    [ComponentType.Image]: 'Image',
-    [ComponentType.ScrollView]: 'ScrollableColumn',
-    [ComponentType.LazyColumn]: 'LazyColumn',
-    [ComponentType.LazyRow]: 'LazyRow',
-    [ComponentType.Card]: 'Card',
-    [ComponentType.Scaffold]: 'Scaffold',
-  },
-  [Platform.Flutter]: {
-    [ComponentType.Button]: 'ElevatedButton',
-    [ComponentType.Text]: 'Text',
-    [ComponentType.VStack]: 'Column',
-    [ComponentType.HStack]: 'Row',
-    [ComponentType.ZStack]: 'Stack',
-    [ComponentType.TextField]: 'TextField',
-    [ComponentType.Image]: 'Image',
-    [ComponentType.ScrollView]: 'SingleChildScrollView',
-    [ComponentType.Container]: 'Container',
-    [ComponentType.Padding]: 'Padding',
-    [ComponentType.Center]: 'Center',
-  },
-  [Platform.ReactNative]: {
-    [ComponentType.Button]: 'Button',
-    [ComponentType.Text]: 'Text',
-    [ComponentType.VStack]: 'View',
-    [ComponentType.HStack]: 'View',
-    [ComponentType.TextField]: 'TextInput',
-    [ComponentType.Image]: 'Image',
-    [ComponentType.ScrollView]: 'ScrollView',
-    [ComponentType.View]: 'View',
-    [ComponentType.FlatList]: 'FlatList',
-  },
+  // [Platform.JetpackCompose]: {
+  //   [ComponentType.Button]: 'Button',
+  //   [ComponentType.Text]: 'Text',
+  //   [ComponentType.VStack]: 'Column',
+  //   [ComponentType.HStack]: 'Row',
+  //   [ComponentType.ZStack]: 'Box',
+  //   [ComponentType.TextField]: 'TextField',
+  //   [ComponentType.Image]: 'Image',
+  //   [ComponentType.ScrollView]: 'ScrollableColumn',
+  //   [ComponentType.LazyColumn]: 'LazyColumn',
+  //   [ComponentType.LazyRow]: 'LazyRow',
+  //   [ComponentType.Card]: 'Card',
+  //   [ComponentType.Scaffold]: 'Scaffold',
+  // },
+  // [Platform.Flutter]: {
+  //   [ComponentType.Button]: 'ElevatedButton',
+  //   [ComponentType.Text]: 'Text',
+  //   [ComponentType.VStack]: 'Column',
+  //   [ComponentType.HStack]: 'Row',
+  //   [ComponentType.ZStack]: 'Stack',
+  //   [ComponentType.TextField]: 'TextField',
+  //   [ComponentType.Image]: 'Image',
+  //   [ComponentType.ScrollView]: 'SingleChildScrollView',
+  //   [ComponentType.Container]: 'Container',
+  //   [ComponentType.Padding]: 'Padding',
+  //   [ComponentType.Center]: 'Center',
+  // },
+  // [Platform.ReactNative]: {
+  //   [ComponentType.Button]: 'Button',
+  //   [ComponentType.Text]: 'Text',
+  //   [ComponentType.VStack]: 'View',
+  //   [ComponentType.HStack]: 'View',
+  //   [ComponentType.TextField]: 'TextInput',
+  //   [ComponentType.Image]: 'Image',
+  //   [ComponentType.ScrollView]: 'ScrollView',
+  //   [ComponentType.View]: 'View',
+  //   [ComponentType.FlatList]: 'FlatList',
+  // },
   [Platform.Web]: {
     [ComponentType.Button]: 'button',
     [ComponentType.Text]: 'p',
@@ -253,40 +270,42 @@ export const PlatformComponentMapping: Record<Platform, Partial<Record<Component
 }
 
 // 平台特定的修饰符映射
-export const PlatformModifierMapping: Record<Platform, Partial<Record<ModifierType, string>>> = {
+export const PlatformModifierMapping: Record<
+  Platform,
+  Partial<Record<ModifierType, string>>
+> = {
   [Platform.SwiftUI]: {
-    [ModifierType.backgroundColor]: '.background',
-    [ModifierType.foregroundColor]: '.foregroundColor',
-    [ModifierType.cornerRadius]: '.cornerRadius',
-    [ModifierType.padding]: '.padding',
-    [ModifierType.fontSize]: '.font(.system(size:))',
-    [ModifierType.fontWeight]: '.fontWeight',
-    [ModifierType.frame]: '.frame',
+    [ColorModifier.backgroundColor]: '.background',
+    [ColorModifier.foregroundColor]: '.foregroundColor',
+    [ShapeModifier.cornerRadius]: '.cornerRadius',
+    [SpaceModifier.padding]: '.padding',
+    [FontModifier.fontSize]: '.font(.system(size:))',
+    [FontModifier.fontWeight]: '.fontWeight',
   },
-  [Platform.JetpackCompose]: {
-    [ModifierType.backgroundColor]: 'Modifier.background',
-    [ModifierType.padding]: 'Modifier.padding',
-    [ModifierType.fillMaxSize]: 'Modifier.fillMaxSize',
-    [ModifierType.fillMaxWidth]: 'Modifier.fillMaxWidth',
-    [ModifierType.clickable]: 'Modifier.clickable',
-  },
-  [Platform.Flutter]: {
-    [ModifierType.backgroundColor]: 'color',
-    [ModifierType.padding]: 'padding',
-    [ModifierType.alignment_flutter]: 'alignment',
-    [ModifierType.decoration]: 'decoration',
-  },
-  [Platform.ReactNative]: {
-    [ModifierType.backgroundColor]: 'backgroundColor',
-    [ModifierType.padding]: 'padding',
-    [ModifierType.flex]: 'flex',
-    [ModifierType.flexDirection]: 'flexDirection',
-  },
+  // [Platform.JetpackCompose]: {
+  //   [ModifierEnum.backgroundColor]: 'Modifier.background',
+  //   [ModifierEnum.padding]: 'Modifier.padding',
+  //   [ModifierEnum.fillMaxSize]: 'Modifier.fillMaxSize',
+  //   [ModifierEnum.fillMaxWidth]: 'Modifier.fillMaxWidth',
+  //   [ModifierEnum.clickable]: 'Modifier.clickable',
+  // },
+  // [Platform.Flutter]: {
+  //   [ModifierEnum.backgroundColor]: 'color',
+  //   [ModifierEnum.padding]: 'padding',
+  //   [ModifierEnum.alignment_flutter]: 'alignment',
+  //   [ModifierEnum.decoration]: 'decoration',
+  // },
+  // [Platform.ReactNative]: {
+  //   [ModifierEnum.backgroundColor]: 'backgroundColor',
+  //   [ModifierEnum.padding]: 'padding',
+  //   [ModifierEnum.flex]: 'flex',
+  //   [ModifierEnum.flexDirection]: 'flexDirection',
+  // },
   [Platform.Web]: {
-    [ModifierType.backgroundColor]: 'background-color',
-    [ModifierType.padding]: 'padding',
-    [ModifierType.fontSize]: 'font-size',
-    [ModifierType.fontWeight]: 'font-weight',
+    [ColorModifier.backgroundColor]: 'background-color',
+    [SpaceModifier.padding]: 'padding',
+    [FontModifier.fontSize]: 'font-size',
+    [FontModifier.fontWeight]: 'font-weight',
   },
 }
 

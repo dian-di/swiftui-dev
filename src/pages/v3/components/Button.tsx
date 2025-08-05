@@ -1,19 +1,16 @@
 import { Button as UIButton } from '@/components/ui/button'
-import { type ComponentDefinition, ComponentType, ModifierType, Platform } from '../const/common'
-
-
-
-export enum ButtonModifierType {
-  buttonStyle = 'buttonStyle',
-  buttonBorderShape = 'buttonBorderShape',
-}
-
-export enum ControlSizeModifierType {
-  mini = 'mini',
-  small = 'small',
-  regular = 'regular',
-  large = 'large',
-}
+import {
+  ButtonModifier,
+  ColorModifier,
+  type ComponentDefinition,
+  ComponentType,
+  FontModifier,
+  InteractModifier,
+  type ModifierType,
+  Platform,
+  ShapeModifier,
+  SpaceModifier,
+} from '../const/common'
 
 const Button: ComponentDefinition = {
   type: ComponentType.Button,
@@ -21,40 +18,41 @@ const Button: ComponentDefinition = {
   defaultProps: { text: 'Button' },
   supportedPlatforms: [
     Platform.SwiftUI,
-    Platform.JetpackCompose,
-    Platform.Flutter,
-    Platform.ReactNative,
+    // Platform.JetpackCompose,
+    // Platform.Flutter,
+    // Platform.ReactNative,
     Platform.Web,
   ],
   availableModifiers: [
     {
-      type: ButtonModifierType.buttonStyle,
+      type: ButtonModifier.buttonStyle,
       name: 'Font Weight',
       valueType: 'select',
-      defaultValue: 'normal',
-      options: ['normal', 'bold', '100', '200', '300', '400', '500', '600', '700', '800', '900'],
+      defaultValue: 'automatic',
+      options: ['automatic', 'plain', 'bordered', 'borderedProminent', 'borderless'],
     },
     {
-      type: ButtonModifierType.buttonBorderShape,
+      type: ButtonModifier.buttonBorderShape,
       name: 'Font Weight',
       valueType: 'select',
-      defaultValue: 'normal',
-      options: ['normal', 'bold', '100', '200', '300', '400', '500', '600', '700', '800', '900'],
+      defaultValue: 'automatic',
+      // TODO: option support function, .eg:.roundedRectangle(radius: 14)
+      options: ['automatic', 'capsule'],
     },
     {
-      type: ModifierType.backgroundColor,
+      type: ColorModifier.backgroundColor,
       name: 'Background Color',
       valueType: 'color',
       defaultValue: '#007AFF',
     },
     {
-      type: ModifierType.foregroundColor,
+      type: ColorModifier.foregroundColor,
       name: 'Text Color',
       valueType: 'color',
       defaultValue: '#FFFFFF',
     },
     {
-      type: ModifierType.cornerRadius,
+      type: ShapeModifier.cornerRadius,
       name: 'Corner Radius',
       valueType: 'number',
       defaultValue: 8,
@@ -63,7 +61,7 @@ const Button: ComponentDefinition = {
       step: 1,
     },
     {
-      type: ModifierType.padding,
+      type: SpaceModifier.padding,
       name: 'Padding',
       valueType: 'number',
       defaultValue: 12,
@@ -72,7 +70,7 @@ const Button: ComponentDefinition = {
       step: 1,
     },
     {
-      type: ModifierType.fontSize,
+      type: FontModifier.fontSize,
       name: 'Font Size',
       valueType: 'number',
       defaultValue: 16,
@@ -81,15 +79,20 @@ const Button: ComponentDefinition = {
       step: 1,
     },
     {
-      type: ModifierType.fontWeight,
+      type: FontModifier.fontWeight,
       name: 'Font Weight',
       valueType: 'select',
       defaultValue: 'normal',
       options: ['normal', 'bold', '100', '200', '300', '400', '500', '600', '700', '800', '900'],
     },
-    { type: ModifierType.disabled, name: 'Disabled', valueType: 'boolean', defaultValue: false },
     {
-      type: ModifierType.opacity,
+      type: InteractModifier.disabled,
+      name: 'Disabled',
+      valueType: 'boolean',
+      defaultValue: false,
+    },
+    {
+      type: InteractModifier.opacity,
       name: 'Opacity',
       valueType: 'number',
       defaultValue: 1,
@@ -107,17 +110,17 @@ const Button: ComponentDefinition = {
       <UIButton
         type='button'
         className='transition-all duration-200 hover:opacity-80'
-        disabled={modifiers[ModifierType.disabled] === 'true'}
+        disabled={modifiers[InteractModifier.disabled] === 'true'}
         style={{
-          backgroundColor: modifiers[ModifierType.backgroundColor] || '#007AFF',
-          color: modifiers[ModifierType.foregroundColor] || '#FFFFFF',
-          borderRadius: `${modifiers[ModifierType.cornerRadius] || 8}px`,
-          padding: `${modifiers[ModifierType.padding] || 12}px ${(Number(modifiers[ModifierType.padding]) || 12) * 1.5}px`,
-          fontSize: `${modifiers[ModifierType.fontSize] || 16}px`,
-          fontWeight: modifiers[ModifierType.fontWeight] || 'normal',
-          opacity: modifiers[ModifierType.opacity] || 1,
+          backgroundColor: modifiers[ColorModifier.backgroundColor] || '#007AFF',
+          color: modifiers[ColorModifier.foregroundColor] || '#FFFFFF',
+          borderRadius: `${modifiers[ShapeModifier.cornerRadius] || 8}px`,
+          padding: `${modifiers[SpaceModifier.padding] || 12}px ${(Number(modifiers[SpaceModifier.padding]) || 12) * 1.5}px`,
+          fontSize: `${modifiers[FontModifier.fontSize] || 16}px`,
+          fontWeight: modifiers[FontModifier.fontWeight] || 'normal',
+          opacity: modifiers[InteractModifier.opacity] || 1,
           border: 'none',
-          cursor: modifiers[ModifierType.disabled] ? 'not-allowed' : 'pointer',
+          cursor: modifiers[InteractModifier.disabled] ? 'not-allowed' : 'pointer',
         }}
       >
         {component.properties.text}

@@ -1,25 +1,32 @@
-import { type ComponentDefinition, ComponentType, ModifierType, Platform } from "../const/common"
+import {
+  ColorModifier,
+  type ComponentDefinition,
+  ComponentType,
+  FontModifier,
+  type ModifierType,
+  Platform,
+} from '../const/common'
 
-const Text: ComponentDefinition =  {
+const Text: ComponentDefinition = {
   type: ComponentType.Text,
   name: 'Text',
   defaultProps: { content: 'Hello, World!' },
   supportedPlatforms: [
     Platform.SwiftUI,
-    Platform.JetpackCompose,
-    Platform.Flutter,
-    Platform.ReactNative,
+    // Platform.JetpackCompose,
+    // Platform.Flutter,
+    // Platform.ReactNative,
     Platform.Web,
   ],
   availableModifiers: [
     {
-      type: ModifierType.foregroundColor,
+      type: ColorModifier.foregroundColor,
       name: 'Text Color',
       valueType: 'color',
       defaultValue: '#000000',
     },
     {
-      type: ModifierType.fontSize,
+      type: FontModifier.fontSize,
       name: 'Font Size',
       valueType: 'number',
       defaultValue: 16,
@@ -28,28 +35,28 @@ const Text: ComponentDefinition =  {
       step: 1,
     },
     {
-      type: ModifierType.fontWeight,
+      type: FontModifier.fontWeight,
       name: 'Font Weight',
       valueType: 'select',
       defaultValue: 'normal',
       options: ['normal', 'bold', '100', '200', '300', '400', '500', '600', '700', '800', '900'],
     },
     {
-      type: ModifierType.fontFamily,
+      type: FontModifier.fontFamily,
       name: 'Font Family',
       valueType: 'select',
       defaultValue: 'system',
       options: ['system', 'serif', 'monospace', 'cursive'],
     },
     {
-      type: ModifierType.textAlign,
+      type: FontModifier.textAlign,
       name: 'Text Align',
       valueType: 'select',
       defaultValue: 'left',
       options: ['left', 'center', 'right', 'justify'],
     },
     {
-      type: ModifierType.lineHeight,
+      type: FontModifier.lineHeight,
       name: 'Line Height',
       valueType: 'number',
       defaultValue: 1.5,
@@ -58,7 +65,7 @@ const Text: ComponentDefinition =  {
       step: 0.1,
     },
     {
-      type: ModifierType.lineLimit,
+      type: FontModifier.lineLimit,
       name: 'Line Limit',
       valueType: 'number',
       defaultValue: 0,
@@ -67,7 +74,7 @@ const Text: ComponentDefinition =  {
       step: 1,
     },
     {
-      type: ModifierType.textDecoration,
+      type: FontModifier.textDecoration,
       name: 'Text Decoration',
       valueType: 'select',
       defaultValue: 'none',
@@ -82,18 +89,18 @@ const Text: ComponentDefinition =  {
     return (
       <p
         style={{
-          color: modifiers[ModifierType.foregroundColor] || '#000000',
-          fontSize: `${modifiers[ModifierType.fontSize] || 16}px`,
-          fontWeight: modifiers[ModifierType.fontWeight] || 'normal',
-          fontFamily: modifiers[ModifierType.fontFamily] || 'system-ui',
-          textAlign: modifiers[ModifierType.textAlign]|| 'left',
-          lineHeight: modifiers[ModifierType.lineHeight] || 1.5,
-          textDecoration: modifiers[ModifierType.textDecoration] || 'none',
+          color: modifiers[ColorModifier.foregroundColor] || '#000000',
+          fontSize: `${modifiers[FontModifier.fontSize] || 16}px`,
+          fontWeight: modifiers[FontModifier.fontWeight] || 'normal',
+          fontFamily: modifiers[FontModifier.fontFamily] || 'system-ui',
+          textAlign: modifiers[FontModifier.textAlign] || 'left',
+          lineHeight: modifiers[FontModifier.lineHeight] || 1.5,
+          textDecoration: modifiers[FontModifier.textDecoration] || 'none',
           margin: 0,
           display: '-webkit-box',
-          WebkitLineClamp: modifiers[ModifierType.lineLimit] || 'none',
+          WebkitLineClamp: modifiers[FontModifier.lineLimit] || 'none',
           WebkitBoxOrient: 'vertical',
-          overflow: modifiers[ModifierType.lineLimit] > 0 ? 'hidden' : 'visible',
+          overflow: modifiers[FontModifier.lineLimit] > 0 ? 'hidden' : 'visible',
         }}
       >
         {component.properties.content}
