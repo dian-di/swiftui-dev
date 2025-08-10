@@ -1,20 +1,28 @@
-import { type ComponentDefinition, ComponentType, ModifierType, Platform } from "../const/common"
+import { type ComponentDefinition, ComponentType, Platform } from '../const/common'
+import {
+  ColorModifier,
+  LayoutModifier,
+  type ModifierType,
+  ShapeModifier,
+  SizeModifier,
+  SpaceModifier,
+} from '../const/modifier'
 
-const VStack: ComponentDefinition =  {
+const VStack: ComponentDefinition = {
   type: ComponentType.VStack,
   name: 'VStack',
   defaultProps: {},
   hasChildren: true,
   supportedPlatforms: [
     Platform.SwiftUI,
-    Platform.JetpackCompose,
-    Platform.Flutter,
-    Platform.ReactNative,
+    // Platform.JetpackCompose,
+    // Platform.Flutter,
+    // Platform.ReactNative,
     Platform.Web,
   ],
   availableModifiers: [
     {
-      type: ModifierType.spacing,
+      type: SpaceModifier.spacing,
       name: 'Spacing',
       valueType: 'number',
       defaultValue: 8,
@@ -23,7 +31,7 @@ const VStack: ComponentDefinition =  {
       step: 1,
     },
     {
-      type: ModifierType.padding,
+      type: SpaceModifier.padding,
       name: 'Padding',
       valueType: 'number',
       defaultValue: 0,
@@ -32,13 +40,13 @@ const VStack: ComponentDefinition =  {
       step: 1,
     },
     {
-      type: ModifierType.backgroundColor,
+      type: ColorModifier.backgroundColor,
       name: 'Background Color',
       valueType: 'color',
       defaultValue: 'transparent',
     },
     {
-      type: ModifierType.cornerRadius,
+      type: ShapeModifier.cornerRadius,
       name: 'Corner Radius',
       valueType: 'number',
       defaultValue: 0,
@@ -47,14 +55,14 @@ const VStack: ComponentDefinition =  {
       step: 1,
     },
     {
-      type: ModifierType.alignment,
+      type: LayoutModifier.alignment,
       name: 'Alignment',
       valueType: 'select',
       defaultValue: 'center',
       options: ['leading', 'center', 'trailing'],
     },
     {
-      type: ModifierType.frame,
+      type: SizeModifier.frame,
       name: 'Frame',
       valueType: 'object',
       defaultValue: { width: 'auto', height: 'auto' },
@@ -70,14 +78,16 @@ const VStack: ComponentDefinition =  {
       <div
         className='flex flex-col'
         style={{
-          gap: `${modifiers[ModifierType.spacing] || 8}px`,
-          padding: `${modifiers[ModifierType.padding] || 0}px`,
+          gap: `${modifiers[SpaceModifier.spacing] || 8}px`,
+          padding: `${modifiers[SpaceModifier.padding] || 0}px`,
           backgroundColor:
-            modifiers[ModifierType.backgroundColor] === 'transparent'
+            modifiers[ColorModifier.backgroundColor] === 'transparent'
               ? 'transparent'
-              : modifiers[ModifierType.backgroundColor],
-          borderRadius: `${modifiers[ModifierType.cornerRadius] || 0}px`,
-          alignItems: alignmentMap[modifiers[ModifierType.alignment] as keyof typeof alignmentMap] || 'center',
+              : modifiers[ColorModifier.backgroundColor],
+          borderRadius: `${modifiers[ShapeModifier.cornerRadius] || 0}px`,
+          alignItems:
+            alignmentMap[modifiers[LayoutModifier.alignment] as keyof typeof alignmentMap] ||
+            'center',
         }}
       >
         {children}

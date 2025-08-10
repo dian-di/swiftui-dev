@@ -1,11 +1,9 @@
+import { type ComponentDefinition, ComponentType, Platform } from '../const/common'
 import {
   ColorModifier,
-  type ComponentDefinition,
-  ComponentType,
   FontModifier,
   type ModifierType,
-  Platform,
-} from '../const/common'
+} from '../const/modifier'
 
 const Text: ComponentDefinition = {
   type: ComponentType.Text,

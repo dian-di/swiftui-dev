@@ -1,31 +1,38 @@
-import { type ComponentDefinition, ComponentType, ModifierType, Platform } from "../const/common"
+import { type ComponentDefinition, ComponentType, Platform } from '../const/common'
+import {
+  ColorModifier,
+  FontModifier,
+  type ModifierType,
+  ShapeModifier,
+  SpaceModifier,
+} from '../const/modifier'
 
-const TextField: ComponentDefinition =  {
+const TextField: ComponentDefinition = {
   type: ComponentType.TextField,
   name: 'TextField',
   defaultProps: { placeholder: 'Enter text...' },
   supportedPlatforms: [
     Platform.SwiftUI,
-    Platform.JetpackCompose,
-    Platform.Flutter,
-    Platform.ReactNative,
+    // Platform.JetpackCompose,
+    // Platform.Flutter,
+    // Platform.ReactNative,
     Platform.Web,
   ],
   availableModifiers: [
     {
-      type: ModifierType.backgroundColor,
+      type: ColorModifier.backgroundColor,
       name: 'Background Color',
       valueType: 'color',
       defaultValue: '#FFFFFF',
     },
     {
-      type: ModifierType.foregroundColor,
+      type: ColorModifier.foregroundColor,
       name: 'Text Color',
       valueType: 'color',
       defaultValue: '#000000',
     },
     {
-      type: ModifierType.cornerRadius,
+      type: ShapeModifier.cornerRadius,
       name: 'Corner Radius',
       valueType: 'number',
       defaultValue: 8,
@@ -34,7 +41,7 @@ const TextField: ComponentDefinition =  {
       step: 1,
     },
     {
-      type: ModifierType.padding,
+      type: SpaceModifier.padding,
       name: 'Padding',
       valueType: 'number',
       defaultValue: 12,
@@ -43,7 +50,7 @@ const TextField: ComponentDefinition =  {
       step: 1,
     },
     {
-      type: ModifierType.fontSize,
+      type: FontModifier.fontSize,
       name: 'Font Size',
       valueType: 'number',
       defaultValue: 16,
@@ -52,7 +59,7 @@ const TextField: ComponentDefinition =  {
       step: 1,
     },
     {
-      type: ModifierType.borderWidth,
+      type: ShapeModifier.borderWidth,
       name: 'Border Width',
       valueType: 'number',
       defaultValue: 1,
@@ -61,7 +68,7 @@ const TextField: ComponentDefinition =  {
       step: 1,
     },
     {
-      type: ModifierType.borderColor,
+      type: ShapeModifier.borderColor,
       name: 'Border Color',
       valueType: 'color',
       defaultValue: '#CCCCCC',
@@ -78,13 +85,13 @@ const TextField: ComponentDefinition =  {
         placeholder={component.properties.placeholder}
         className='transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500'
         style={{
-          backgroundColor: modifiers[ModifierType.backgroundColor] || '#FFFFFF',
-          color: modifiers[ModifierType.foregroundColor] || '#000000',
-          borderRadius: `${modifiers[ModifierType.cornerRadius] || 8}px`,
-          padding: `${modifiers[ModifierType.padding] || 12}px`,
-          fontSize: `${modifiers[ModifierType.fontSize] || 16}px`,
-          borderWidth: `${modifiers[ModifierType.borderWidth] || 1}px`,
-          borderColor: modifiers[ModifierType.borderColor] || '#CCCCCC',
+          backgroundColor: modifiers[ColorModifier.backgroundColor] || '#FFFFFF',
+          color: modifiers[ColorModifier.foregroundColor] || '#000000',
+          borderRadius: `${modifiers[ShapeModifier.cornerRadius] || 8}px`,
+          padding: `${modifiers[SpaceModifier.padding] || 12}px`,
+          fontSize: `${modifiers[FontModifier.fontSize] || 16}px`,
+          borderWidth: `${modifiers[ShapeModifier.borderWidth] || 1}px`,
+          borderColor: modifiers[ShapeModifier.borderColor] || '#CCCCCC',
           borderStyle: 'solid',
           width: '100%',
         }}

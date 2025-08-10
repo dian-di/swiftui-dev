@@ -1,9 +1,13 @@
 import { uuid } from '@/lib/utils'
 import {
+  // ButtonModifier,
+  ColorModifier,
   type ComponentIR,
   ComponentType,
+  FontModifier,
   type ModifierDefinition,
-  ModifierType,
+  ShapeModifier,
+  SpaceModifier,
 } from '@/pages/v3/const/common'
 import componentRegistry from '@/pages/v3/const/registry'
 
@@ -27,8 +31,8 @@ export function defaultComponentIR(): ComponentIR {
     type: ComponentType.VStack,
     properties: {},
     modifiers: [
-      { type: ModifierType.spacing, value: 16 },
-      { type: ModifierType.padding, value: 20 },
+      { type: SpaceModifier.spacing, value: 16 },
+      { type: SpaceModifier.padding, value: 20 },
     ],
     children: [
       {
@@ -36,8 +40,8 @@ export function defaultComponentIR(): ComponentIR {
         type: ComponentType.Text,
         properties: { content: 'Welcome to SwiftUI' },
         modifiers: [
-          { type: ModifierType.fontSize, value: 24 },
-          { type: ModifierType.fontWeight, value: 'bold' },
+          { type: FontModifier.fontSize, value: 24 },
+          { type: FontModifier.fontWeight, value: 'bold' },
         ],
       },
       {
@@ -45,8 +49,8 @@ export function defaultComponentIR(): ComponentIR {
         type: ComponentType.Button,
         properties: { text: 'Get Started' },
         modifiers: [
-          { type: ModifierType.backgroundColor, value: '#007AFF' },
-          { type: ModifierType.cornerRadius, value: 12 },
+          { type: ColorModifier.backgroundColor, value: '#007AFF' },
+          { type: ShapeModifier.cornerRadius, value: 12 },
         ],
       },
       {
@@ -55,7 +59,7 @@ export function defaultComponentIR(): ComponentIR {
         properties: { src: 'https://placehold.co/200', alt: 'Placeholder' },
         modifiers: [
           // { type: ModifierType.backgroundColor, value: '#007AFF' },
-          { type: ModifierType.cornerRadius, value: 12 },
+          { type: ShapeModifier.cornerRadius, value: 12 },
         ],
       },
     ],

@@ -1,16 +1,14 @@
 import { Button as UIButton } from '@/components/ui/button'
+import { type ComponentDefinition, ComponentType, Platform } from '../const/common'
 import {
   ButtonModifier,
   ColorModifier,
-  type ComponentDefinition,
-  ComponentType,
   FontModifier,
   InteractModifier,
   type ModifierType,
-  Platform,
   ShapeModifier,
   SpaceModifier,
-} from '../const/common'
+} from '../const/modifier'
 
 const Button: ComponentDefinition = {
   type: ComponentType.Button,

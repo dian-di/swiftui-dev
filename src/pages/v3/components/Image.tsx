@@ -1,4 +1,10 @@
-import { type ComponentDefinition, ComponentType, ModifierType, Platform } from "../const/common"
+import { type ComponentDefinition, ComponentType, Platform } from '../const/common'
+import {
+  InteractModifier,
+  type ModifierType,
+  ShapeModifier,
+  SizeModifier
+} from '../const/modifier'
 
 const aspectRatioMap = {
   original: 'auto',
@@ -9,20 +15,20 @@ const aspectRatioMap = {
   '9:16': '9 / 16',
 } as const
 
-const Image: ComponentDefinition =  {
+const Image: ComponentDefinition = {
   type: ComponentType.Image,
   name: 'Image',
   defaultProps: { src: 'https://placehold.co/200', alt: 'Placeholder' },
   supportedPlatforms: [
     Platform.SwiftUI,
-    Platform.JetpackCompose,
-    Platform.Flutter,
-    Platform.ReactNative,
+    // Platform.JetpackCompose,
+    // Platform.Flutter,
+    // Platform.ReactNative,
     Platform.Web,
   ],
   availableModifiers: [
     {
-      type: ModifierType.cornerRadius,
+      type: ShapeModifier.cornerRadius,
       name: 'Corner Radius',
       valueType: 'number',
       defaultValue: 0,
@@ -31,14 +37,14 @@ const Image: ComponentDefinition =  {
       step: 1,
     },
     {
-      type: ModifierType.aspectRatio,
+      type: SizeModifier.aspectRatio,
       name: 'Aspect Ratio',
       valueType: 'select',
       defaultValue: 'original',
       options: ['original', '1:1', '4:3', '16:9', '3:4', '9:16'],
     },
     {
-      type: ModifierType.scaleEffect,
+      type: SizeModifier.scaleEffect,
       name: 'Scale',
       valueType: 'number',
       defaultValue: 1,
@@ -47,7 +53,7 @@ const Image: ComponentDefinition =  {
       step: 0.1,
     },
     {
-      type: ModifierType.opacity,
+      type: InteractModifier.opacity,
       name: 'Opacity',
       valueType: 'number',
       defaultValue: 1,
@@ -55,24 +61,24 @@ const Image: ComponentDefinition =  {
       max: 1,
       step: 0.1,
     },
-    { type: ModifierType.shadow, name: 'Shadow', valueType: 'boolean', defaultValue: false },
+    { type: ShapeModifier.shadow, name: 'Shadow', valueType: 'boolean', defaultValue: false },
   ],
   render: (component) => {
     const modifiers = component.modifiers.reduce(
       (acc, mod) => ({ ...acc, [mod.type]: mod.value }),
-      {} as Record<ModifierType, string>,
+      {} as Record<ModifierType, string | number>,
     )
-    
+
     return (
       <img
         src={component.properties.src}
         alt={component.properties.alt}
         style={{
-          borderRadius: `${modifiers[ModifierType.cornerRadius] || 0}px`,
-          aspectRatio: aspectRatioMap[modifiers[ModifierType.aspectRatio]] || 'auto',
-          transform: `scale(${modifiers[ModifierType.scaleEffect] || 1})`,
-          opacity: modifiers[ModifierType.opacity] || 1,
-          boxShadow: modifiers[ModifierType.shadow] ? '0 4px 8px rgba(0,0,0,0.1)' : 'none',
+          borderRadius: `${modifiers[ShapeModifier.cornerRadius] || 0}px`,
+          aspectRatio: aspectRatioMap[modifiers[SizeModifier.aspectRatio]] || 'auto',
+          transform: `scale(${modifiers[SizeModifier.scaleEffect] || 1})`,
+          opacity: modifiers[InteractModifier.opacity] || 1,
+          boxShadow: modifiers[ShapeModifier.shadow] ? '0 4px 8px rgba(0,0,0,0.1)' : 'none',
           objectFit: 'cover',
           maxWidth: '100%',
           height: 'auto',
