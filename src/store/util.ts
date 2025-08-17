@@ -1,11 +1,7 @@
 import { uuid } from '@/lib/utils'
 import { type ComponentIR, ComponentType, type ModifierDefinition } from '@/pages/v3/const/common'
-import {
-  ColorModifier,
-  FontModifier,
-  ShapeModifier,
-  SpaceModifier,
-} from '@/pages/v3/const/modifier'
+import { FontModifier } from '@/pages/v3/const/modifier/font'
+import { ColorModifier, ShapeModifier, SpaceModifier } from '@/pages/v3/const/modifier/modifier'
 import componentRegistry from '@/pages/v3/const/registry'
 
 export function initComponentIR(type: ComponentType): ComponentIR {

@@ -4,7 +4,7 @@ import {
   type ModifierType,
   ShapeModifier,
   SizeModifier
-} from '../const/modifier'
+} from '../const/modifier/modifier'
 
 const aspectRatioMap = {
   original: 'auto',

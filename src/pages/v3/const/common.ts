@@ -1,10 +1,5 @@
-import {
-  ColorModifier,
-  FontModifier,
-  type ModifierType,
-  ShapeModifier,
-  SpaceModifier,
-} from './modifier'
+import { FontModifier } from '@/pages/v3/const/modifier/font'
+import { ColorModifier, type ModifierType, ShapeModifier, SpaceModifier } from './modifier/modifier'
 
 export enum Platform {
   SwiftUI = 'SwiftUI',
@@ -256,13 +251,19 @@ export interface ComponentDefinition {
   render: (component: ComponentIR, children?: React.ReactNode) => React.ReactNode
 }
 
+export interface PlatformMap {
+  attrList?: Record<string, string>[]
+  classList?: Record<string, string>[]
+}
+
 export interface ModifierDefinition {
   type: ModifierType
   name: string
   valueType: 'string' | 'number' | 'boolean' | 'color' | 'select' | 'object'
   defaultValue: any
-  options?: string[]
-  optionsMap?: Record<string, Record<string, string>>,
+  // options?: any[]
+  readonly options?: readonly any[]
+  optionsMap?: Record<string, PlatformMap>
   min?: number
   max?: number
   step?: number

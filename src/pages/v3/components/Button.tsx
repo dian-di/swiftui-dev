@@ -1,14 +1,19 @@
 import { Button as UIButton } from '@/components/ui/button'
-import { type ComponentDefinition, ComponentType, Platform } from '../const/common'
 import {
   ButtonModifier,
+  ButtonStyleOptions,
+  getAttr,
+  type OptionType,
+} from '@/pages/v3/const/modifier/button'
+import { FontModifier } from '@/pages/v3/const/modifier/font'
+import {
   ColorModifier,
-  FontModifier,
   InteractModifier,
   type ModifierType,
   ShapeModifier,
   SpaceModifier,
-} from '../const/modifier'
+} from '@/pages/v3/const/modifier/modifier'
+import { type ComponentDefinition, ComponentType, Platform } from '../const/common'
 
 const Button: ComponentDefinition = {
   type: ComponentType.Button,
@@ -26,24 +31,24 @@ const Button: ComponentDefinition = {
       type: ButtonModifier.buttonStyle,
       name: 'ButtonStyle',
       valueType: 'select',
-      defaultValue: 'automatic',
-      options: ['automatic', 'plain', 'bordered', 'borderedProminent', 'borderless'],
-      optionsMap: {
-        automatic: {
-          attrList: [{}],
-          styleList: [{}],
-          classList: [{}],
-        },
-      }
+      ...ButtonStyleOptions,
     },
     {
       type: ButtonModifier.buttonBorderShape,
-      name: 'buttonBorderShape',
+      name: 'ButtonBorderShape',
       valueType: 'select',
       defaultValue: 'automatic',
       // TODO: option support function, .eg:.roundedRectangle(radius: 14)
       options: ['automatic', 'capsule'],
     },
+    // {
+    //   type: ControlSize,
+    //   name: 'buttonBorderShape',
+    //   valueType: 'select',
+    //   defaultValue: 'automatic',
+    //   // TODO: option support function, .eg:.roundedRectangle(radius: 14)
+    //   options: ['automatic', 'capsule'],
+    // },
     {
       type: ColorModifier.backgroundColor,
       name: 'Background Color',
@@ -116,6 +121,7 @@ const Button: ComponentDefinition = {
         type='button'
         className='transition-all duration-200 hover:opacity-80'
         disabled={modifiers[InteractModifier.disabled] === 'true'}
+        variant={getAttr('variant', modifiers[ButtonModifier.buttonStyle] as OptionType)}
         style={{
           backgroundColor: modifiers[ColorModifier.backgroundColor] || '#007AFF',
           color: modifiers[ColorModifier.foregroundColor] || '#FFFFFF',

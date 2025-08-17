@@ -5,7 +5,7 @@ import {
   type ModifierType,
   ShapeModifier,
   SpaceModifier,
-} from '../const/modifier'
+} from '../const/modifier/modifier'
 
 const HStack: ComponentDefinition = {
   type: ComponentType.HStack,

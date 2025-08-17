@@ -6,7 +6,7 @@ import {
   ShapeModifier,
   SizeModifier,
   SpaceModifier,
-} from '../const/modifier'
+} from '../const/modifier/modifier'
 
 const VStack: ComponentDefinition = {
   type: ComponentType.VStack,

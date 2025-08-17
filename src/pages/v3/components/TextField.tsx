@@ -1,11 +1,11 @@
+import { FontModifier } from '@/pages/v3/const/modifier/font'
 import { type ComponentDefinition, ComponentType, Platform } from '../const/common'
 import {
   ColorModifier,
-  FontModifier,
   type ModifierType,
   ShapeModifier,
   SpaceModifier,
-} from '../const/modifier'
+} from '../const/modifier/modifier'
 
 const TextField: ComponentDefinition = {
   type: ComponentType.TextField,

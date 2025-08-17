@@ -1,9 +1,6 @@
+import { FontModifier } from '@/pages/v3/const/modifier/font'
+import { ColorModifier, type ModifierType } from '@/pages/v3/const/modifier/modifier'
 import { type ComponentDefinition, ComponentType, Platform } from '../const/common'
-import {
-  ColorModifier,
-  FontModifier,
-  type ModifierType,
-} from '../const/modifier'
 
 const Text: ComponentDefinition = {
   type: ComponentType.Text,
