@@ -58,7 +58,17 @@ const HStack: ComponentDefinition = {
       name: 'Alignment',
       valueType: 'select',
       defaultValue: 'center',
-      options: ['top', 'center', 'bottom'],
+      options: [
+        'center',
+        'leading',
+        'trailing',
+        'top',
+        'bottom',
+        'topLeading',
+        'topTrailing',
+        'bottomLeading',
+        'bottomTrailing',
+      ],
     },
   ],
   render: (component, children) => {
