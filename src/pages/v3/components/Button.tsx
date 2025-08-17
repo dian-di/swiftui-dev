@@ -24,14 +24,21 @@ const Button: ComponentDefinition = {
   availableModifiers: [
     {
       type: ButtonModifier.buttonStyle,
-      name: 'Font Weight',
+      name: 'ButtonStyle',
       valueType: 'select',
       defaultValue: 'automatic',
       options: ['automatic', 'plain', 'bordered', 'borderedProminent', 'borderless'],
+      optionsMap: {
+        automatic: {
+          attrList: [{}],
+          styleList: [{}],
+          classList: [{}],
+        },
+      }
     },
     {
       type: ButtonModifier.buttonBorderShape,
-      name: 'Font Weight',
+      name: 'buttonBorderShape',
       valueType: 'select',
       defaultValue: 'automatic',
       // TODO: option support function, .eg:.roundedRectangle(radius: 14)

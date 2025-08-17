@@ -262,6 +262,7 @@ export interface ModifierDefinition {
   valueType: 'string' | 'number' | 'boolean' | 'color' | 'select' | 'object'
   defaultValue: any
   options?: string[]
+  optionsMap?: Record<string, Record<string, string>>,
   min?: number
   max?: number
   step?: number
