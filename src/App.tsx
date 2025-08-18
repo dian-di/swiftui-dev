@@ -1,5 +1,6 @@
 import './App.css'
 import { Route, Routes } from 'react-router-dom'
+// import Siminator from '@/pages/siminator'
 import Home from '@/pages/home'
 import Mine from '@/pages/mine'
 import V3 from '@/pages/v3'

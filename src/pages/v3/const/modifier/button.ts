@@ -1,3 +1,8 @@
+import type { VariantProps } from 'class-variance-authority'
+import type { buttonVariants } from '@/components/ui/button'
+
+type ButtonVariants = VariantProps<typeof buttonVariants>["variant"]
+
 export enum ButtonModifier {
   buttonStyle = 'buttonStyle',
   buttonBorderShape = 'buttonBorderShape',
@@ -5,10 +10,10 @@ export enum ButtonModifier {
 
 const options = ['automatic', 'plain', 'bordered', 'borderedProminent', 'borderless'] as const
 
-export type OptionType = typeof options[number]
+export type OptionType = (typeof options)[number]
 
 type elementProp = {
-  attr: Record<string, string>
+  attr: Record<string, ButtonVariants>
 }
 
 export const ButtonStyleOptionsMap: Record<OptionType, elementProp> = {
@@ -45,7 +50,6 @@ export const ButtonStyleOptions = {
 }
 
 export function getAttr(attr: string, option: OptionType) {
-  console.log(option, 'option')
   if (!option) return 'default'
   return ButtonStyleOptionsMap[option].attr[attr]
 }
