@@ -11,6 +11,7 @@ type VariantsType = keyof Variants
 export enum ButtonModifier {
   buttonStyle = 'buttonStyle',
   buttonBorderShape = 'buttonBorderShape',
+  controlSize = 'controlSize'
 }
 
 enum ButtonStyle {
@@ -135,7 +136,6 @@ export function getButtonStyleByAttr(attr: string, option: ButtonStyle) {
   return ButtonStyleOptionsMap[option].attr[attr]
 }
 
-export function getButtonConfig() {
-
-  return ButtonMap[]
+export function getButtonConfig(type: ButtonModifier) {
+  return ButtonMap[type]
 }
