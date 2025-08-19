@@ -1,3 +1,6 @@
+import type { ButtonModifier } from './button'
+import type { FontModifier } from './font'
+
 export enum TextFieldModifier {
   textFieldStyle = 'textFieldStyle',
 }
@@ -84,4 +87,12 @@ export enum InteractModifier {
   onLongPress = 'onLongPress',
 }
 
-export type ModifierType = ColorModifier |SizeModifier |SpaceModifier |FontModifier |ShapeModifier |LayoutModifier |ButtonModifier | InteractModifier| ControlSizeModifier
+export type ModifierType =
+  | ColorModifier
+  | SizeModifier
+  | SpaceModifier
+  | FontModifier
+  | ShapeModifier
+  | LayoutModifier
+  | ButtonModifier
+  | InteractModifier

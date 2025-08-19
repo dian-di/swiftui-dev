@@ -1,9 +1,9 @@
 import { Button as UIButton } from '@/components/ui/button'
 import {
   ButtonModifier,
-  ButtonStyleOptions,
-  getAttr,
-  type OptionType,
+  ButtonStyle,
+  type ButtonStyleOptionType,
+  getButtonStyleByAttr,
 } from '@/pages/v3/const/modifier/button'
 import { FontModifier } from '@/pages/v3/const/modifier/font'
 import {
@@ -31,7 +31,7 @@ const Button: ComponentDefinition = {
       type: ButtonModifier.buttonStyle,
       name: 'ButtonStyle',
       valueType: 'select',
-      ...ButtonStyleOptions,
+      ...ButtonStyle,
     },
     {
       type: ButtonModifier.buttonBorderShape,
@@ -121,7 +121,10 @@ const Button: ComponentDefinition = {
         type='button'
         className='transition-all duration-200 hover:opacity-80'
         disabled={modifiers[InteractModifier.disabled] === 'true'}
-        variant={getAttr('variant', modifiers[ButtonModifier.buttonStyle] as OptionType)}
+        variant={getButtonStyleByAttr(
+          'variant',
+          modifiers[ButtonModifier.buttonStyle] as ButtonStyleOptionType,
+        )}
         style={{
           backgroundColor: modifiers[ColorModifier.backgroundColor] || '#007AFF',
           color: modifiers[ColorModifier.foregroundColor] || '#FFFFFF',
